@@ -251,6 +251,16 @@ GithubUpdater = function()
     GetCurrentVersion = function()
 	    return GetResourceMetadata(GetCurrentResourceName(), "version")
     end
+
+	isVersionIncluded = function(Versions, cVersion)
+		for k, v in pairs(Versions) do
+			if v.version == cVersion then
+				return true
+			end
+		end
+
+		return false
+	end
     
     local CurrentVersion = GetCurrentVersion()
     local resourceName = "^0[^2"..GetCurrentResourceName().."^0]"
@@ -272,6 +282,9 @@ GithubUpdater = function()
 				if not string.find(CurrentVersion, 'beta') then
 					for i=1, #decoded do 
 						if decoded[i]['version'] == CurrentVersion then
+							break
+						elseif not isVersionIncluded(decoded, CurrentVersion) then
+							print('^1You are using the ^3BETA VERSION^1 of ^0' .. resourceName)
 							break
 						end
 
