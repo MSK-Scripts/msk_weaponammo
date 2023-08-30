@@ -21,6 +21,7 @@ AddEventHandler('msk_weaponammo:addWeaponClip', function(weaponName, clip)
 					if (v.ammo + ammo) <= Config.checkMaxAmmo[clip] then
 						xPlayer.triggerEvent('msk_weaponammo:runAnimation')
 						xPlayer.addWeaponAmmo(weaponName, ammo)
+						TriggerClientEvent('msk_weaponammo:updateAmmo', src, weaponName, ammo)
 						Config.Notification(src, Translation[Config.Locale]['used_clip']:format(hasItem.label))
 						
 						if Config.Removeables[clip] then xPlayer.removeInventoryItem(clip, 1) end
@@ -30,12 +31,15 @@ AddEventHandler('msk_weaponammo:addWeaponClip', function(weaponName, clip)
 					else
 						Config.Notification(src, Translation[Config.Locale]['check_maxammo'])
 					end
+
+					break
 				end
 			end
 		else
 			logging('debug', ('Weapon: %s, Item: %s, Ammo: %s'):format(weaponName, clip, ammo))
 			xPlayer.triggerEvent('msk_weaponammo:runAnimation')
 			xPlayer.addWeaponAmmo(weaponName, ammo)
+			TriggerClientEvent('msk_weaponammo:updateAmmo', src, weaponName, ammo)
 			Config.Notification(src, Translation[Config.Locale]['used_clip']:format(hasItem.label))
 
 			if Config.Removeables[clip] then
