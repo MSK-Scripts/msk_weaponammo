@@ -4,6 +4,8 @@ Usable Clips, Components & Tints
 * Forum: https://forum.cfx.re/t/esx-msk-weaponammo-clips-components-tints/4793783
 * Discord Support: https://discord.gg/5hHSBRHvJE
 
+**!!! We do not support inventories that have weapons as items !!!**
+
 ## Installation
 If you are using ESX Menu and NOT NativeUI, go to `fxmanifest.lua` and delete `'@NativeUI/NativeUI.lua',`
 
