@@ -7,7 +7,7 @@ Usable Clips, Components & Tints
 **!!! We do not support inventories that have weapons as items !!!**
 
 ## Installation
-If you are using ESX Menu and NOT NativeUI, go to `fxmanifest.lua` and delete `'@NativeUI/NativeUI.lua',`
+If you are using ESX Menu and NOT one of the others, go to `fxmanifest.lua` and delete `'@NativeUI/NativeUI.lua',` and `'@ragemenu/ragemenu.lua'`
 
 If you are using ESX Legacy and NOT ESX 1.2 then do this:
 ```lua
@@ -34,3 +34,8 @@ end)
 It should look like this: https://prnt.sc/-El6-xwHQgOp
 
 **Please restart your Server after the Edits!**
+
+## Requirements
+* [ESX](https://github.com/esx-framework/esx_core)
+* NativeUI *(optional)*
+* [RageMenu](https://github.com/EnteNico/ragemenu) *(optional)*

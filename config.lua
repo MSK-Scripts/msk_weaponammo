@@ -4,7 +4,7 @@ Config.Locale = 'de'
 Config.VersionChecker = true
 Config.Debug = true
 ----------------------------------------------------------------
-Config.Menu = 'NativeUI' -- Set to 'ESX' if you want ESX Menu || Set to 'NativeUI' if you want NativeUI || Read the Readme.md if you want to use ESX Menu
+Config.Menu = 'RageMenu' -- Set to 'ESX' if you want ESX Menu || Set to 'NativeUI' if you want NativeUI || Set to 'RageMenu' if you want RageMenu
 Config.AntiWeaponPunch = true -- Set false if you don't want to use this
 Config.Animation = true -- Set false if you dont want an animation
 
