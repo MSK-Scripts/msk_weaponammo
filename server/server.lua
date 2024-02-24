@@ -110,7 +110,7 @@ AddEventHandler('msk_weaponammo:removeWeaponComponent', function(weaponName, com
 	end
 end)
 
-MSK.RegisterCallback('msk_weaponammo:getItem', function(source, cb, weaponName)
+MSK.Register('msk_weaponammo:getItem', function(source, weaponName)
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
 	local match = false
@@ -130,9 +130,9 @@ MSK.RegisterCallback('msk_weaponammo:getItem', function(source, cb, weaponName)
 	end
 
 	if match then
-		cb(items[1])
+		return items[1]
 	else
-		cb(false)
+		return false
 	end
 end)
 
