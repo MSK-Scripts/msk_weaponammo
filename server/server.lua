@@ -221,10 +221,8 @@ AddEventHandler('msk_weaponammo:removeWeaponTint', function(weaponName)
 end)
 
 logging = function(code, ...)
-    if Config.Debug then
-        local script = "[^2"..GetCurrentResourceName().."^0]"
-        MSK.logging(script, code, ...)
-    end
+    if not Config.Debug then return end
+    MSK.Logging(code, ...)
 end
 
 function items_contains(items, item)

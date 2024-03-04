@@ -30,7 +30,7 @@ if Config.Hotkey.enable then
 				if IsPedArmed(playerPed, 4) then
 					if hash then
 						local weapon = ESX.GetWeaponFromHash(hash)
-						local itemName = MSK.TriggerCallback('msk_weaponammo:getItem', weapon.name)
+						local itemName = MSK.Trigger('msk_weaponammo:getItem', weapon.name)
 						logging('debug', ('[HOTKEY] [Add Ammo] Item: ^3%s^0, Weapon: ^3%s^0'):format(itemName, weapon.name))
 
 						if itemName then
@@ -62,7 +62,7 @@ AddEventHandler('msk_weaponammo:checkItem', function(clip)
 			if not Config.Weapons[clip] then return logging('debug', ('[ITEM] [Add Ammo] Item ^3%s^0 is not configured in config.lua'):format(clip)) end
 			logging('debug', ('[ITEM] [Add Ammo] Item: ^3%s^0, Weapon: ^3%s^0'):format(clip, weapon.name))
 
-			if MSK.Table_Contains(Config.Weapons[clip], weapon.name) then
+			if MSK.TableContains(Config.Weapons[clip], weapon.name) then
 				TriggerServerEvent('msk_weaponammo:addWeaponClip', weapon.name, clip)
 			else
 				Config.Notification(nil, Translation[Config.Locale]['not_correct_weapon'])
@@ -114,8 +114,6 @@ AddEventHandler('msk_weaponammo:runAnimation', function()
 end)
 
 logging = function(code, ...)
-    if Config.Debug then
-        local script = "[^2"..GetCurrentResourceName().."^0]"
-        MSK.logging(script, code, ...)
-    end
+    if not Config.Debug then return end
+    MSK.Logging(code, ...)
 end

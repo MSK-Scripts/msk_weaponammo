@@ -59,16 +59,20 @@ end
 ---- NativeUI ----
 
 if Config.Menu:match('NativeUI') then
-    _menuPool = NativeUI.CreatePool()
-    local mainMenu
+    local _menuPool = nil
 
     CreateThread(function()
         while true do
-            sleep = 200
-            if _menuPool:IsAnyMenuOpen() then 
-                sleep = 0
-                _menuPool:ProcessMenus()
+            local sleep = 1
+            
+            if _menuPool then
+                if _menuPool:IsAnyMenuOpen() then
+                    _menuPool:ProcessMenus()
+                elseif not _menuPool:IsAnyMenuOpen() then 
+                    _menuPool:Remove()
+                end
             end
+            
             Wait(sleep)
         end
     end)
@@ -84,13 +88,19 @@ if Config.Menu:match('NativeUI') then
     }
 
     OpenAttachmentMenuNativeUI = function()
+        if _menuPool then 
+            _menuPool:Remove()
+            _menuPool = nil
+        end
+        _menuPool = NativeUI.CreatePool()
+
         local playerPed = PlayerPedId()
         local hash = GetSelectedPedWeapon(playerPed)
         local weapon = ESX.GetWeaponFromHash(hash)
 
         if not weapon then Config.Notification(nil, Translation[Config.Locale]['no_weapon']) return end
 
-        mainMenu = NativeUI.CreateMenu(Translation[Config.Locale]['weapon_components'], '~b~'.. Translation[Config.Locale]['remove_components'])
+        local mainMenu = NativeUI.CreateMenu(Translation[Config.Locale]['weapon_components'], '~b~'.. Translation[Config.Locale]['remove_components'])
         _menuPool:Add(mainMenu)
 
         local Components = _menuPool:AddSubMenu(mainMenu, Translation[Config.Locale]['components'])
