@@ -1,6 +1,9 @@
 **!!! We do not support inventories that have weapons as items like ox_inventory !!!**
+
 **!!! We do not support inventories that have weapons as items like ox_inventory !!!**
+
 **!!! We do not support inventories that have weapons as items like ox_inventory !!!**
+
 **!!! We do not support inventories that have weapons as items like ox_inventory !!!**
 
 ## Installation
