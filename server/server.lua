@@ -1,6 +1,3 @@
-ESX = exports["es_extended"]:getSharedObject()
-
--- Events
 RegisterNetEvent('msk_weaponammo:addWeaponClip')
 AddEventHandler('msk_weaponammo:addWeaponClip', function(weaponName, clip)
 	local src = source
@@ -19,7 +16,7 @@ AddEventHandler('msk_weaponammo:addWeaponClip', function(weaponName, clip)
 					logging('debug', ('Ammo in Weapon: %s, Ammo in Clip: %s, Ammo after Relaod: %s, MaxAmmo in Config: %s'):format(v.ammo, ammo, v.ammo + ammo, Config.checkMaxAmmo[clip]))
 
 					if (v.ammo + ammo) <= Config.checkMaxAmmo[clip] then
-						xPlayer.triggerEvent('msk_weaponammo:runAnimation')
+						TriggerClientEvent('msk_weaponammo:runAnimation', src)
 						xPlayer.addWeaponAmmo(weaponName, ammo)
 						TriggerClientEvent('msk_weaponammo:updateAmmo', src, weaponName, ammo)
 						Config.Notification(src, Translation[Config.Locale]['used_clip']:format(hasItem.label))
@@ -37,7 +34,7 @@ AddEventHandler('msk_weaponammo:addWeaponClip', function(weaponName, clip)
 			end
 		else
 			logging('debug', ('Weapon: %s, Item: %s, Ammo: %s'):format(weaponName, clip, ammo))
-			xPlayer.triggerEvent('msk_weaponammo:runAnimation')
+			TriggerClientEvent('msk_weaponammo:runAnimation', src)
 			xPlayer.addWeaponAmmo(weaponName, ammo)
 			TriggerClientEvent('msk_weaponammo:updateAmmo', src, weaponName, ammo)
 			Config.Notification(src, Translation[Config.Locale]['used_clip']:format(hasItem.label))
@@ -129,11 +126,7 @@ MSK.Register('msk_weaponammo:getItem', function(source, weaponName)
 		end
 	end
 
-	if match then
-		return items[1]
-	else
-		return false
-	end
+	return match and items[1] or false
 end)
 
 -- Add/Remove Weapon Tints
@@ -235,22 +228,16 @@ function items_contains(items, item)
 end
 
 function saveESXPlayer(xPlayer)
-	if not Config.SavePlayer.enable then return end
-
-	if Config.SavePlayer.version:match('1.2') then
-		ESX.SavePlayer(xPlayer)
-	elseif Config.SavePlayer.version:match('legacy') then
-		local Core = exports.es_extended.getCoreObject() -- exports('getCoreObject', function() return Core end)
-		Core.SavePlayer(xPlayer)
-	end
+	if not Config.SavePlayer then return end
+	MySQL.update("UPDATE users SET loadout = ? WHERE identifier = ?", {json.encode(xPlayer.getLoadout(true)), xPlayer.identifier})
 end
 
 GithubUpdater = function()
-    GetCurrentVersion = function()
+    local GetCurrentVersion = function()
 	    return GetResourceMetadata(GetCurrentResourceName(), "version")
     end
 
-	isVersionIncluded = function(Versions, cVersion)
+	local isVersionIncluded = function(Versions, cVersion)
 		for k, v in pairs(Versions) do
 			if v.version == cVersion then
 				return true

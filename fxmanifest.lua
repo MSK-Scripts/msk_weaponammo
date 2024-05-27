@@ -4,11 +4,12 @@ games { 'gta5' }
 author 'Musiker15 - MSK Scripts'
 name 'msk_weaponammo'
 description 'Ammunition, Components & Tints'
-version '8.7.3'
+version '8.8.0'
 
 lua54 'yes'
 
 shared_scripts {
+	'@es_extended/imports.lua',
 	'@msk_core/import.lua',
 	'config.lua',
 	'translation.lua'
@@ -16,7 +17,6 @@ shared_scripts {
 
 client_scripts {
 	'@NativeUI/NativeUI.lua', -- Remove this if you don't use NativeUI // Go to menu.lua and remove ALL of the NativeUI Code
-	'@ragemenu/ragemenu.lua', -- Remove this if you don't use RageMenu // Go to menu.lua and remove ALL of the RageMenu Code
 	'client/*.lua'
 }
 

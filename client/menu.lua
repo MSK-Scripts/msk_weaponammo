@@ -1,14 +1,15 @@
 RegisterNetEvent('msk_weaponammo:openAttachmentMenu')
 AddEventHandler('msk_weaponammo:openAttachmentMenu', function()
-    if Config.Menu:match('ESX') then
+    if Config.Menu == 'ESX' then
         OpenAttachmentMenuESX() -- ESX Menu
-    elseif Config.Menu:match('NativeUI') then
+    elseif Config.Menu == 'NativeUI' then
         OpenAttachmentMenuNativeUI() -- NativeUI
-    elseif Config.Menu:match('RageMenu') then
-        OpenAttachmentMenuRageMenu() -- RageMenu
     end
 end)
 
+----------------------------------------------------------------
+-- ESX Menu
+----------------------------------------------------------------
 OpenAttachmentMenuESX = function()
     local playerPed = PlayerPedId()
 	local hash = GetSelectedPedWeapon(playerPed)
@@ -56,9 +57,10 @@ OpenAttachmentMenuESX = function()
 	end)
 end
 
----- NativeUI ----
-
-if Config.Menu:match('NativeUI') then
+----------------------------------------------------------------
+-- NativeUI Menu
+----------------------------------------------------------------
+if Config.Menu == 'NativeUI' then
     local _menuPool = nil
 
     CreateThread(function()
@@ -124,50 +126,4 @@ if Config.Menu:match('NativeUI') then
         _menuPool:MouseEdgeEnabled(false)
         _menuPool:ControlDisablingEnabled(false)
     end
-end
-
--- RageMenu
-
-if Config.Menu:match('RageMenu') then
-    local mainMenu
-
-    OpenAttachmentMenuRageMenu = function()
-        local playerPed = PlayerPedId()
-        local hash = GetSelectedPedWeapon(playerPed)
-        local weapon = ESX.GetWeaponFromHash(hash)
-
-        if not weapon then Config.Notification(nil, Translation[Config.Locale]['no_weapon']) return end
-
-        local Items = {
-            {name = Translation[Config.Locale]['scope'], desc = Translation[Config.Locale]['remove_scope'], comtype = 'scope', type = 'component'},
-            {name = Translation[Config.Locale]['grip'], desc = Translation[Config.Locale]['remove_grip'], comtype = 'grip', type = 'component'},
-            {name = Translation[Config.Locale]['flashlight'], desc = Translation[Config.Locale]['remove_flashlight'], comtype = 'flashlight', type = 'component'},
-            {name = Translation[Config.Locale]['clip_extended'], desc = Translation[Config.Locale]['remove_clip_extended'], comtype = 'clip_extended', type = 'component'},
-            {name = Translation[Config.Locale]['suppressor'], desc = Translation[Config.Locale]['remove_suppressor'], comtype = 'suppressor', type = 'component'},
-            {name = Translation[Config.Locale]['luxary_finish'], desc = Translation[Config.Locale]['remove_luxary_finish'], comtype = 'luxary_finish', type = 'component'},
-            {name = Translation[Config.Locale]['tint'], desc = Translation[Config.Locale]['remove_tint'], type = 'tint'},
-        }
-
-        mainMenu = RageMenu:CreateMenu(Translation[Config.Locale]['weapon_components'], '~b~'.. Translation[Config.Locale]['remove_components'])
-        local components = RageMenu:CreateMenu(Translation[Config.Locale]['components'], Translation[Config.Locale]['components'])
-        mainMenu:AddSubmenu(components, Translation[Config.Locale]['components'], '')
-
-        for k, v in pairs(Items) do
-            components:AddButton(v.name, '~b~' .. v.desc):On('click', function(item)
-                if v.type == 'component' then
-                    TriggerServerEvent('msk_weaponammo:removeWeaponComponent', weapon.name, v.comtype)
-                elseif v.type == 'tint' then
-                    TriggerServerEvent('msk_weaponammo:removeWeaponTint', weapon.name)
-                end
-            end)
-        end
-
-        RageMenu:OpenMenu(mainMenu)
-    end
-
-    AddEventHandler('onResourceStop', function(resource)
-        if GetCurrentResourceName() == resource then
-            RageMenu:Close(mainMenu)
-        end
-    end)
 end

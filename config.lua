@@ -1,17 +1,14 @@
 Config = {}
 ----------------------------------------------------------------
 Config.Locale = 'de'
-Config.VersionChecker = true
 Config.Debug = true
+Config.VersionChecker = true
 ----------------------------------------------------------------
-Config.Menu = 'RageMenu' -- Set to 'ESX' if you want ESX Menu || Set to 'NativeUI' if you want NativeUI || Set to 'RageMenu' if you want RageMenu
+Config.Menu = 'NativeUI' -- Set to 'ESX' if you want ESX Menu || Set to 'NativeUI' if you want NativeUI
 Config.AntiWeaponPunch = true -- Set false if you don't want to use this
 Config.Animation = true -- Set false if you dont want an animation
 
-Config.SavePlayer = {
-	enable = true,
-	version = 'legacy' -- Set to '1.2' or 'legacy' // For ESX 1.2 set to '1.2', for ESX Legacy set 'legacy'
-}
+Config.SavePlayer = true
 
 Config.enableMaxAmmo = true -- Set false to deactivate this feature
 Config.checkMaxAmmo = {
@@ -55,8 +52,7 @@ Config.WeaponAmmoClips = { -- Will give this many bullets to player
 	['throwableclip'] = 5,
 
 	-- CUSTOM ITEMS // Add them in server_items.lua
-	['polweaclip'] = 30, -- All Weapontypes
-	['polweabox'] = 150, -- All Weapontypes
+	['itemname'] = true,
 }
 ----------------------------------------------------------------
 -- Set true if you like to remove item when used
@@ -74,10 +70,19 @@ Config.Removeables = {
 
 	-- Weapon Attachments
 	['scope'] = true,
+	['scope_holo'] = true,
+	['scope_small'] = true,
+	['scope_medium'] = true,
+	['scope_large'] = true,
+	['scope_advanced'] = true,
 	['grip'] = true,
 	['flashlight'] = true,
+	['clip_default'] = true,
 	['clip_extended'] = true,
+	['clip_drum'] = true,
+	['clip_box'] = true,
 	['suppressor'] = true,
+	['compensator'] = true,
 	['luxary_finish'] = true,
 	['attachment_remover'] = false, -- This item removes Weapon Components and opens the Menu // recommended set to false
 
@@ -91,8 +96,7 @@ Config.Removeables = {
 	['tint_platinum'] = true,
 
 	-- CUSTOM ITEMS // Add them in server_items.lua
-	['polweaclip'] = true,
-	['polweabox'] = true,
+	['itemname'] = true,
 }
 ----------------------------------------------------------------
 -- Please don't TOUCH if you don't know what you are doing!!

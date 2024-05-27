@@ -1,5 +1,3 @@
-ESX = exports["es_extended"]:getSharedObject()
-
 if Config.AntiWeaponPunch then
     CreateThread(function()
         while true do
