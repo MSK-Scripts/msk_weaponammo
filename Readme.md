@@ -1,3 +1,6 @@
+## We do NOT give support for this anymore
+We switched to ox_inventory so that's why we don't give support anymore.
+
 ## Important
 * We do not support inventories that have weapons as items like ox_inventory
 * Those are: ox_inventory, qs-inventory, etc.
