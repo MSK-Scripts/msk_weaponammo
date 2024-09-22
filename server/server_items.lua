@@ -184,27 +184,27 @@ ESX.RegisterUsableItem('tint_green', function(source)
 end)
 
 ESX.RegisterUsableItem('tint_gold', function(source)
-	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_green')
+	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_gold')
 end)
 
 ESX.RegisterUsableItem('tint_pink', function(source)
-	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_green')
+	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_pink')
 end)
 
 ESX.RegisterUsableItem('tint_army', function(source)
-	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_green')
+	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_army')
 end)
 
 ESX.RegisterUsableItem('tint_lspd', function(source)
-	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_green')
+	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_lspd')
 end)
 
 ESX.RegisterUsableItem('tint_orange', function(source)
-	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_green')
+	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_orange')
 end)
 
 ESX.RegisterUsableItem('tint_platinum', function(source)
-	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_green')
+	TriggerClientEvent('msk_weaponammo:addTint', source, 'tint_platinum')
 end)
 
 ----------------------------------------------------------------

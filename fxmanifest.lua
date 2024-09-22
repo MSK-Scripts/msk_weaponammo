@@ -4,7 +4,7 @@ games { 'gta5' }
 author 'Musiker15 - MSK Scripts'
 name 'msk_weaponammo'
 description 'Ammunition, Components & Tints'
-version '8.8.0'
+version '8.8.1'
 
 lua54 'yes'
 
