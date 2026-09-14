@@ -32,9 +32,9 @@ Config.Hotkey = {
 -- !!! This function is clientside AND serverside !!!
 Config.Notification = function(source, message)
     if IsDuplicityVersion() then -- serverside
-        MSK.Notification(source, 'MSK WeaponAmmo', message, 'info')
+        MSK.Notification(source, { title = 'MSK WeaponAmmo', message = message, type = 'info' })
     else -- clientside
-        MSK.Notification('MSK WeaponAmmo', message, 'info')
+        MSK.Notification({ title = 'MSK WeaponAmmo', message = message, type = 'info' })
     end
 end
 ---------------------------------------------------
